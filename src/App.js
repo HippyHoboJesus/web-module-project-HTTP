@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import MovieList from './components/MovieList';
 import Movie from './components/Movie';
+import EditMovieForm from "./components/EditMovieForm";
+import AddMovieForm from "./components/AddMovieForm";
 
 import MovieHeader from './components/MovieHeader';
 
@@ -43,13 +45,15 @@ const App = (props) => {
           <FavoriteMovieList favoriteMovies={favoriteMovies} />
 
           <Routes>
-            <Route path="movies/edit/:id" />
+            <Route path="movies/edit/:id" element={<EditMovieForm setMovies={setMovies}/>}/>
 
-            <Route path="movies/:id" />
+            <Route path="movies/:id" element={<Movie setMovies={setMovies}/>}/>
 
             <Route path="movies" element={<MovieList movies={movies} />} />
 
             <Route path="/" element={<Navigate to="/movies" />} />
+
+            <Route path="movies/add" element={<AddMovieForm setMovies={setMovies}/>}/>
           </Routes>
         </div>
       </div>
